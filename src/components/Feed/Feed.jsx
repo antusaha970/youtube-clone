@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
-import { SideBar } from "../";
+import { SideBar, Videos } from "../";
 
 const Feed = () => {
   return (
@@ -49,6 +49,8 @@ const Feed = () => {
             Videos
           </span>
         </Typography>
+
+        <Videos video={[]} />
       </Box>
     </Stack>
   );
