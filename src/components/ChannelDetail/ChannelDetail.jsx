@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchFromAPI } from "../../utils/API/fetchFromAPI";
 import { Box } from "@mui/material";
 import { ChannelCard, VideoCard } from "../";
+import Videos from "../Videos/Videos";
 const ChannelDetail = () => {
   const { id } = useParams();
   const [channelDetails, setChannelDetails] = useState(null);
@@ -17,7 +18,6 @@ const ChannelDetail = () => {
       }
     );
   }, [id]);
-  console.log(videos);
   return (
     <Box
       sx={{
@@ -38,9 +38,16 @@ const ChannelDetail = () => {
       <Box
         sx={{
           display: "flex",
+          p: 2,
         }}
       >
-        <Box>{/* <VideoCard videos={videos} /> */}</Box>
+        <Box
+          sx={{
+            mx: { sm: "100px" },
+          }}
+        >
+          <Videos videos={videos} />
+        </Box>
       </Box>
     </Box>
   );
