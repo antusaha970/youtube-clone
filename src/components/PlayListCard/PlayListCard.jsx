@@ -4,7 +4,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const PlayListCard = ({ playListDetail }) => {
-  console.log(playListDetail);
   const {
     id: { playlistId },
     snippet: { channelId, title, channelTitle, thumbnails },

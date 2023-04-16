@@ -8,3 +8,4 @@ export { default as Videos } from "../Videos/Videos";
 export { default as VideoCard } from "../VideoCard/VideoCard";
 export { default as ChannelCard } from "../ChannelCard/ChannelCard";
 export { default as PlayListCard } from "../PlayListCard/PlayListCard";
+export { default as PlayListFeed } from "../PlayListFeed/PlayListFeed";
