@@ -1,8 +1,9 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchFromAPI } from "../../utils/API/fetchFromAPI";
+import { CheckCircle } from "@mui/icons-material";
 
 const VideoDetail = () => {
   const { id } = useParams();
@@ -13,6 +14,13 @@ const VideoDetail = () => {
     });
   }, []);
   console.log(videoDetails);
+  if (!videoDetails?.snippet) {
+    return <h2>Loading</h2>;
+  }
+  const {
+    snippet: { title, channelId, channelTitle },
+    statistics: { viewCount, likeCount },
+  } = videoDetails;
   return (
     <Box minHeight="95vh">
       <Stack direction={{ xs: "column", md: "row" }}>
@@ -29,6 +37,42 @@ const VideoDetail = () => {
               controls
               className="react-player"
             />
+            <Typography variant="h5" fontWeight="bold" p={2} color="#fff">
+              {title}
+            </Typography>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              sx={{
+                color: "#fff",
+              }}
+              py={1}
+              px={2}
+            >
+              <Link to={`/channel/${channelId}`}>
+                <Typography
+                  variant={{ sm: "subtitle1", md: "h6" }}
+                  color="#fff"
+                >
+                  {channelTitle}
+                  <CheckCircle
+                    sx={{
+                      color: "gray",
+                      fontSize: "12px",
+                      pl: "5px",
+                    }}
+                  />
+                </Typography>
+              </Link>
+              <Stack direction="row" gap="20px" alignItems="center">
+                <Typography variant="body1" sx={{ opacity: 0.7 }}>
+                  {parseInt(viewCount).toLocaleString()} views
+                </Typography>
+                <Typography sx={{ opacity: 0.7 }} variant="body1">
+                  {parseInt(likeCount).toLocaleString()} likes
+                </Typography>
+              </Stack>
+            </Stack>
           </Box>
         </Box>
       </Stack>
