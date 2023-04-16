@@ -1,4 +1,4 @@
-import { PlaylistPlay } from "@mui/icons-material";
+import { CheckCircle, PlaylistPlay } from "@mui/icons-material";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ const PlayListCard = ({ playListDetail }) => {
         boxShadow: "none",
       }}
     >
-      <Link to={`/playlist`}>
+      <Link to={`/playlist/${playlistId}`}>
         <CardMedia
           image={thumbnails.high.url}
           sx={{
@@ -28,25 +28,44 @@ const PlayListCard = ({ playListDetail }) => {
           sx={{
             backgroundColor: "#1e1e1e",
             height: "106px",
-            display: "flex",
-            alignItems: "center",
           }}
         >
-          <Typography
-            variant="subtitle1"
+          <Box
             sx={{
-              color: "#fff",
-              fontWeight: "bold",
+              display: "flex",
+              alignItems: "center",
             }}
           >
-            {title}
-          </Typography>
-          <PlaylistPlay
+            <Typography
+              variant="subtitle1"
+              sx={{
+                color: "#fff",
+                fontWeight: "bold",
+              }}
+            >
+              {title}
+            </Typography>
+            <PlaylistPlay
+              sx={{
+                color: "#fff",
+                fontSize: "30px",
+              }}
+            />
+          </Box>
+          <Typography
+            variant="subtitle2"
             sx={{
-              color: "#fff",
-              fontSize: "30px",
+              color: "gray",
             }}
-          />
+          >
+            {channelTitle}{" "}
+            <CheckCircle
+              sx={{
+                ml: "5px",
+                fontSize: "12px",
+              }}
+            />
+          </Typography>
         </CardContent>
       </Link>
     </Card>
