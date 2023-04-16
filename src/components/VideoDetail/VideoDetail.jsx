@@ -20,7 +20,6 @@ const VideoDetail = () => {
       setVideos(data.items);
     });
   }, []);
-  console.log(videos);
   if (!videoDetails?.snippet) {
     return <h2>Loading</h2>;
   }

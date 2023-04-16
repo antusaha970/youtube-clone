@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
 import React from "react";
-import { logo } from "../../utils/constants";
+import logo from "../../assets/logo.webp";
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -24,7 +24,7 @@ const NavBar = () => {
           alignItems: "center",
         }}
       >
-        <img src={logo} alt="logo" height={45} />
+        <img src={logo} alt="logo" height={45} width={70} />
       </Link>
       <SearchBar />
     </Stack>
