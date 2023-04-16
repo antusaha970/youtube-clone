@@ -4,16 +4,23 @@ import ReactPlayer from "react-player";
 import { Link, useParams } from "react-router-dom";
 import { fetchFromAPI } from "../../utils/API/fetchFromAPI";
 import { CheckCircle } from "@mui/icons-material";
-
+import { Videos } from "../";
 const VideoDetail = () => {
   const { id } = useParams();
   const [videoDetails, setVideoDetails] = useState(null);
+  const [videos, setVideos] = useState([]);
   useEffect(() => {
     fetchFromAPI(`videos?part=snippet,statistics&id=${id}`).then((data) => {
       setVideoDetails(data.items[0]);
     });
+
+    fetchFromAPI(
+      `search?part=snippet&maxResults="10"&relatedToVideoId=${id}`
+    ).then((data) => {
+      setVideos(data.items);
+    });
   }, []);
-  console.log(videoDetails);
+  console.log(videos);
   if (!videoDetails?.snippet) {
     return <h2>Loading</h2>;
   }
@@ -50,10 +57,7 @@ const VideoDetail = () => {
               px={2}
             >
               <Link to={`/channel/${channelId}`}>
-                <Typography
-                  variant={{ sm: "subtitle1", md: "h6" }}
-                  color="#fff"
-                >
+                <Typography variant="h6" color="#fff">
                   {channelTitle}
                   <CheckCircle
                     sx={{
@@ -74,6 +78,14 @@ const VideoDetail = () => {
               </Stack>
             </Stack>
           </Box>
+        </Box>
+        <Box
+          py={{ md: 1, xs: 5 }}
+          px={2}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Videos direction="column" videos={videos} />
         </Box>
       </Stack>
     </Box>
