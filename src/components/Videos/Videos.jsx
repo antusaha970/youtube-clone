@@ -2,7 +2,7 @@ import { Box, Stack } from "@mui/material";
 import React from "react";
 import { VideoCard, ChannelCard, PlayListCard } from "../";
 
-const Videos = ({ videos, direction }) => {
+const Videos = ({ videos, direction, lastVideoRef }) => {
   return (
     <Stack
       direction={direction || "row"}
@@ -17,6 +17,7 @@ const Videos = ({ videos, direction }) => {
           {item.id.playlistId && <PlayListCard playListDetail={item} />}
         </Box>
       ))}
+      <div ref={lastVideoRef}></div>
     </Stack>
   );
 };
