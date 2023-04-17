@@ -17,7 +17,7 @@ const Videos = ({ videos, direction, lastVideoRef }) => {
           {item.id.playlistId && <PlayListCard playListDetail={item} />}
         </Box>
       ))}
-      <div ref={lastVideoRef}></div>
+      <div ref={lastVideoRef || null}></div>
     </Stack>
   );
 };
