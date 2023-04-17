@@ -19,7 +19,6 @@ const Feed = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        console.log(entries);
         if (entries[0].isIntersecting && nextPageToken) {
           // fetch the next page of videos and append to the current list
           fetchFromAPI(

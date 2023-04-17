@@ -9,3 +9,5 @@ export { default as VideoCard } from "../VideoCard/VideoCard";
 export { default as ChannelCard } from "../ChannelCard/ChannelCard";
 export { default as PlayListCard } from "../PlayListCard/PlayListCard";
 export { default as PlayListFeed } from "../PlayListFeed/PlayListFeed";
+export { default as CommentFeed } from "../CommentFeed/CommentFeed";
+export { default as CommentCard } from "../CommentCard/CommentCard";

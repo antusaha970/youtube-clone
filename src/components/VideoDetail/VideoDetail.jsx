@@ -4,21 +4,30 @@ import ReactPlayer from "react-player";
 import { Link, useParams } from "react-router-dom";
 import { fetchFromAPI } from "../../utils/API/fetchFromAPI";
 import { CheckCircle } from "@mui/icons-material";
-import { Videos } from "../";
+import { Videos, CommentFeed } from "../";
 const VideoDetail = () => {
   const { id } = useParams();
   const [videoDetails, setVideoDetails] = useState(null);
   const [videos, setVideos] = useState([]);
+  const [comments, setComments] = useState([]);
   useEffect(() => {
+    // For getting video details
     fetchFromAPI(`videos?part=snippet,statistics&id=${id}`).then((data) => {
       setVideoDetails(data.items[0]);
     });
 
+    // For getting suggested videos
     fetchFromAPI(
       `search?part=snippet&maxResults="10"&relatedToVideoId=${id}`
     ).then((data) => {
-      setVideos(data.items);
+      const videoToShow = data.items.slice(0, 10);
+      setVideos(videoToShow);
     });
+
+    // For getting video comments
+    fetchFromAPI(
+      `commentThreads?part=snippet&videoId=${id}&maxResults="100"`
+    ).then((data) => setComments(data.items));
   }, []);
   if (!videoDetails?.snippet) {
     return <h2>Loading</h2>;
@@ -72,7 +81,8 @@ const VideoDetail = () => {
                   {parseInt(viewCount).toLocaleString()} views
                 </Typography>
                 <Typography sx={{ opacity: 0.7 }} variant="body1">
-                  {parseInt(likeCount).toLocaleString()} likes
+                  {likeCount ? parseInt(likeCount).toLocaleString() : "hidden"}{" "}
+                  likes
                 </Typography>
               </Stack>
             </Stack>
@@ -87,6 +97,9 @@ const VideoDetail = () => {
           <Videos direction="column" videos={videos} />
         </Box>
       </Stack>
+      <Box>
+        <CommentFeed comments={comments} />
+      </Box>
     </Box>
   );
 };
