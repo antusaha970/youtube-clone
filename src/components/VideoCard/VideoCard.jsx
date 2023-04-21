@@ -36,14 +36,14 @@ const VideoCard = ({
       </Link>
       <CardContent
         sx={{
-          backgroundColor: "#1e1e1e",
+          backgroundColor: "#EDE6E6",
           height: "106px",
         }}
       >
         <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
           <Typography
             variant="subtitle1"
-            color="#fff"
+            color="#000000"
             sx={{
               fontWeight: "bold",
             }}

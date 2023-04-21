@@ -3,7 +3,6 @@ import React from "react";
 import { CommentCard } from "../";
 
 const CommentFeed = ({ comments }) => {
-  console.log(comments);
   return (
     <Box
       sx={{

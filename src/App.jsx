@@ -11,7 +11,7 @@ import {
 } from "./components/Index/Index";
 function App() {
   return (
-    <Box sx={{ background: "#000" }}>
+    <Box sx={{ background: "#2E2E2E" }}>
       <NavBar />
       <Routes>
         <Route path="/" element={<Feed />} />

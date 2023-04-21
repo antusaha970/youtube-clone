@@ -84,7 +84,7 @@ const Feed = () => {
           <span>{selectedCategory} </span>
           <span
             style={{
-              color: "#f31503",
+              color: "#FA0606",
             }}
           >
             Videos
